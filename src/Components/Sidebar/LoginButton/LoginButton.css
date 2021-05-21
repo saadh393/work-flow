@@ -1,0 +1,21 @@
+.googleLoginBtn {
+  width: 80%;
+  gap: 10px;
+  padding: 10px;
+  display: flex;
+  margin: 1rem auto;
+  border-radius: 5px;
+  justify-content: center;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.googleLoginBtn img {
+  width: 25px;
+  height: 25px;
+}
+
+.googleLoginBtn h3 {
+  color: var(--black);
+  font-weight: 500;
+}

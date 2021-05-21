@@ -1,0 +1,14 @@
+.navMenu {
+  list-style: none;
+  width: 100%;
+}
+
+.navMenu li {
+  color: var(--white);
+  padding: 0.8rem 1.2rem;
+  cursor: pointer;
+}
+
+.navMenu li:hover {
+  background-color: var(--primaryHover);
+}

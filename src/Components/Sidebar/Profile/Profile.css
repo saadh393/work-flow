@@ -1,0 +1,23 @@
+.profilePicture {
+  margin: 2rem;
+}
+.profilePicture img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profileUsername {
+  width: 100%;
+  color: var(--white);
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .profilePicture {
+    display: flex;
+    justify-content: center;
+  }
+}
