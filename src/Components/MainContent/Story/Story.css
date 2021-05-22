@@ -1,0 +1,49 @@
+.card-wrapper {
+  display: flex;
+  gap: 15px;
+  margin-top: 1rem;
+  overflow-x: scroll;
+  max-height: 240px;
+  cursor: grab;
+}
+
+.card-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.card-wrapper.active {
+  cursor: grabbing;
+}
+
+/* Each Card */
+
+.story-card {
+  min-width: 160px;
+  height: 210px;
+  border-radius: 5px;
+}
+
+/* Own Story */
+.own-story {
+  min-width: 160px;
+  height: 210px;
+  border-radius: 5px;
+  border: 3px solid var(--primary);
+  box-sizing: border-box;
+}
+
+.story-card:nth-child(1n) {
+  background: rebeccapurple;
+}
+
+.story-card:nth-child(2n) {
+  background: violet;
+}
+
+.story-card:nth-child(3n) {
+  background: yellowgreen;
+}
+
+.story-card:nth-child(4n) {
+  background: royalblue;
+}

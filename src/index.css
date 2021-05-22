@@ -16,8 +16,21 @@
   font-family: "Poppins", sans-serif;
 }
 
+h1,
+h2 {
+  color: var(--textPrimary);
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.mainContent {
+  overflow: auto;
+}
+
+.mainContentWrapper {
+  padding: 2rem;
 }
