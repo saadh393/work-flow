@@ -8,7 +8,6 @@ import { useToggleEvents } from "../../../App";
 
 const NavHeader = () => {
   const { toggle, setToggle } = useToggleEvents();
-  console.log(toggle);
 
   return (
     <>

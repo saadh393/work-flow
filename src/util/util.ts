@@ -19,7 +19,7 @@ export const SliderGrab = () => {
       slider.classList.add("active");
       startX = e.pageX - slider.offsetLeft;
       scrollLeft = slider.scrollLeft;
-      slider;
+      // slider;
     });
     slider.addEventListener("mouseleave", () => {
       isDown = false;

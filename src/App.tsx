@@ -7,20 +7,25 @@ import Index from "./Pages/Index";
 export type TogglerType = {
   toggle: boolean;
   setToggle: (args: boolean) => void;
+  noteItems: object[];
+  setNoteItem: (args: any) => void;
 };
 
 export const EventContext = createContext<TogglerType>({
   toggle: false,
   setToggle: () => {},
+  noteItems: [],
+  setNoteItem: () => {},
 });
 
 export const useToggleEvents = () => useContext(EventContext);
 
 function App() {
   const [toggle, setToggle] = useState(false);
+  const [noteItems, setNoteItem] = useState([]);
 
   return (
-    <EventContext.Provider value={{ toggle, setToggle }}>
+    <EventContext.Provider value={{ toggle, setToggle, noteItems, setNoteItem }}>
       <Index />
     </EventContext.Provider>
   );
