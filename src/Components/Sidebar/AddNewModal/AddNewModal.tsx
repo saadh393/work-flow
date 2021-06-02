@@ -1,35 +1,39 @@
 import CreateTick from "./CreateTick";
-import { NoteProvider } from "../../../util/interfaces";
+import { ModalVisibility, NoteProvider } from "../../../util/interfaces";
 import "./AddNewModal.css";
 import React from "react";
 import { useToggleEvents } from "../../../App";
 import ShowTick from "./ShowTick";
 
-const AddNewModal = () => {
-  const { noteItems, setNoteItem } = useToggleEvents();
+const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
+  const { todos, setTodo } = useToggleEvents();
+
+  const [noteItems, setNoteItem] = React.useState<NoteProvider[]>([]);
   const [eachNote, setEachNote] = React.useState<NoteProvider>({
     id: noteItems.length,
     note: undefined,
     checked: false,
   });
 
-  function storeData() {
+  function storeData(callback: Function) {
     const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
     let newNote = { id: randomNumber, ...eachNote };
     eachNote.note && setNoteItem([...noteItems, newNote]);
     setEachNote({ id: randomNumber, note: undefined });
-    console.log(newNote);
-    console.log(noteItems);
+    callback();
   }
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
-      storeData();
+      storeData(() => {});
     }
   };
 
   const storeItems = () => {
-    storeData();
+    storeData(() => {
+      setTodo([...todos, noteItems]);
+      setIsVisible(!isVisible);
+    });
   };
 
   const updateCheck = (checked: boolean, id: number | null) => {
@@ -43,7 +47,7 @@ const AddNewModal = () => {
 
   return (
     <>
-      <div className="modal-wrapper">
+      <div className="modal-wrapper" style={{ display: isVisible ? "" : "none" }}>
         <div className="modal-card">
           <input type="text" placeholder="Title" className="title" />
           <div className="description">
@@ -55,7 +59,7 @@ const AddNewModal = () => {
           </div>
           <div className="modal-menu">
             <li onClick={storeItems}>Save</li>
-            <li onClick={() => console.log(noteItems)}>Cancel</li>
+            <li onClick={() => setIsVisible(!isVisible)}>Cancel</li>
           </div>
         </div>
       </div>

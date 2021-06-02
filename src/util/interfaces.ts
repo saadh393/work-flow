@@ -14,3 +14,8 @@ export interface ShowTickProps {
   SavedData: NoteProvider;
   updateCheck: (checked: boolean, id: number | null) => void;
 }
+
+export interface ModalVisibility {
+  isVisible: boolean;
+  setIsVisible: (args?: any) => void;
+}

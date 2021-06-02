@@ -1,14 +1,15 @@
+// import { NoteProvider } from "../../../util/interfaces";
 import TickItem from "./TickItem";
 
-const TodoCard = () => {
+const TodoCard = ({ todo }: any) => {
   return (
     <div className="card">
       <h3>Shopping List</h3>
 
       <div className="cardContent">
-        <TickItem listItem={"Egg"} isChecked />
-        <TickItem listItem={"Egg"} isChecked={false} />
-        <TickItem listItem={"Egg"} isChecked />
+        {todo.map((tick: any) => (
+          <TickItem listItem={tick.note} isChecked={tick.checked} />
+        ))}
       </div>
     </div>
   );

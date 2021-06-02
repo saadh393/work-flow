@@ -1,10 +1,11 @@
+import { ModalVisibility } from "../../../util/interfaces";
 import "./NavMenu.css";
 
-const NavMenu = () => {
+const NavMenu = ({ isVisible, setIsVisible }: ModalVisibility) => {
   return (
     <>
       <ul className="navMenu">
-        <li>Add New Note</li>
+        <li onClick={() => setIsVisible(!isVisible)}>Add New Note</li>
         <li>Add New Note</li>
         <li>Add New Note</li>
       </ul>

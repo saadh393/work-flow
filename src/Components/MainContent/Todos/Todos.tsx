@@ -1,17 +1,17 @@
 import TodoCard from "./TodoCard";
 import "./Todo.css";
+import { useToggleEvents } from "../../../App";
 
 const Todos = () => {
+  const { todos } = useToggleEvents();
   return (
     <section className="todo-section">
       <h1>Todos</h1>
 
       <div className="todo-wrapper">
-        <TodoCard />
-        <TodoCard />
-        <TodoCard />
-        <TodoCard />
-        <TodoCard />
+        {todos.map((todo) => (
+          <TodoCard todo={todo} />
+        ))}
       </div>
     </section>
   );
