@@ -1,6 +1,5 @@
-import ModalTick from "./CreateTick";
-import { provider } from "../../../util/interfaces";
-
+import CreateTick from "./CreateTick";
+import { NoteProvider } from "../../../util/interfaces";
 import "./AddNewModal.css";
 import React from "react";
 import { useToggleEvents } from "../../../App";
@@ -8,18 +7,38 @@ import ShowTick from "./ShowTick";
 
 const AddNewModal = () => {
   const { noteItems, setNoteItem } = useToggleEvents();
-  const [eachNote, setEachNote] = React.useState<provider>({ note: undefined, checked: false });
+  const [eachNote, setEachNote] = React.useState<NoteProvider>({
+    id: noteItems.length,
+    note: undefined,
+    checked: false,
+  });
+
+  function storeData() {
+    const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
+    let newNote = { id: randomNumber, ...eachNote };
+    eachNote.note && setNoteItem([...noteItems, newNote]);
+    setEachNote({ id: randomNumber, note: undefined });
+    console.log(newNote);
+    console.log(noteItems);
+  }
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
-      eachNote.note && setNoteItem([...noteItems, eachNote]);
-      setEachNote({});
+      storeData();
     }
   };
 
   const storeItems = () => {
-    eachNote.note && setNoteItem([...noteItems, eachNote]);
-    setEachNote({ note: undefined });
+    storeData();
+  };
+
+  const updateCheck = (checked: boolean, id: number | null) => {
+    let copyNoteItem: NoteProvider[] = [...noteItems];
+    let index = copyNoteItem.findIndex((obj) => obj?.id === id);
+    if (copyNoteItem[index].id === id) {
+      copyNoteItem[index].checked = checked;
+    }
+    setNoteItem(copyNoteItem);
   };
 
   return (
@@ -28,14 +47,15 @@ const AddNewModal = () => {
         <div className="modal-card">
           <input type="text" placeholder="Title" className="title" />
           <div className="description">
-            <ModalTick keyevent={handleKeyPress} setEachNote={setEachNote} eachNote={eachNote} />
-            {noteItems.map((note: any) => {
-              return <ShowTick SavedData={note} />;
+            <CreateTick keyevent={handleKeyPress} setEachNote={setEachNote} eachNote={eachNote} />
+
+            {[...noteItems].reverse().map((note: any) => {
+              return <ShowTick SavedData={note} updateCheck={updateCheck} />;
             })}
           </div>
           <div className="modal-menu">
             <li onClick={storeItems}>Save</li>
-            <li onClick={() => console.log(eachNote)}>Cancel</li>
+            <li onClick={() => console.log(noteItems)}>Cancel</li>
           </div>
         </div>
       </div>

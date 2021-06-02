@@ -53,6 +53,8 @@
   margin-top: 1rem;
   font-weight: 500;
   margin-bottom: 80px;
+  max-height: 340px;
+  overflow-y: auto;
 }
 
 .modal-card .modal-menu {

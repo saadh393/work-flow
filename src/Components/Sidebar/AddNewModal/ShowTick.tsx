@@ -1,11 +1,13 @@
 import { ShowTickProps } from "../../../util/interfaces";
 
-const ShowTick = ({ SavedData }: ShowTickProps) => {
-  const handleCheck = (e: any) => {};
-
+const ShowTick = ({ SavedData, updateCheck }: ShowTickProps) => {
   return (
     <div className="modaltick-wrapper">
-      <input type="checkbox" checked={SavedData.checked} onChange={handleCheck} />
+      <input
+        type="checkbox"
+        checked={SavedData.checked}
+        onChange={() => updateCheck(!SavedData.checked, SavedData.id)}
+      />
       <input
         type="text"
         className="modalTick-input"

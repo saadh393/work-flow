@@ -1,13 +1,13 @@
 import React, { createContext, useContext, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import Index from "./Pages/Index";
+import { NoteProvider } from "./util/interfaces";
 
 /** @Todo Cleanup The Code Create Exernal Files */
 export type TogglerType = {
   toggle: boolean;
   setToggle: (args: boolean) => void;
-  noteItems: object[];
+  noteItems: NoteProvider[];
   setNoteItem: (args: any) => void;
 };
 

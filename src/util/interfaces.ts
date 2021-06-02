@@ -1,15 +1,16 @@
-export interface noteState {
-  eachNote?: provider;
+export interface CreateTicketProps {
+  eachNote?: NoteProvider;
   setEachNote: (args?: any) => void;
-  note?: any;
   keyevent: (arg?: any) => void;
 }
 
-export interface provider {
+export interface NoteProvider {
+  id: number | null;
   checked?: boolean;
   note?: string | undefined;
 }
 
 export interface ShowTickProps {
-  SavedData: provider;
+  SavedData: NoteProvider;
+  updateCheck: (checked: boolean, id: number | null) => void;
 }
