@@ -1,13 +1,13 @@
 import CreateTick from "./CreateTick";
 import { ModalVisibility, NoteProvider } from "../../../util/interfaces";
 import "./AddNewModal.css";
-import React from "react";
+import React, { useState } from "react";
 import { useToggleEvents } from "../../../App";
 import ShowTick from "./ShowTick";
 
 const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
   const { todos, setTodo } = useToggleEvents();
-
+  const [title, setTitle] = useState("");
   const [noteItems, setNoteItem] = React.useState<NoteProvider[]>([]);
   const [eachNote, setEachNote] = React.useState<NoteProvider>({
     id: noteItems.length,
@@ -15,13 +15,32 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     checked: false,
   });
 
-  function storeData(callback: Function) {
+  const handleChange = (e: any) => {
+    setEachNote({ ...eachNote, note: e.target.value });
+  };
+
+  const storeData = (callback: Function) => {
+    if (!eachNote.note) {
+      return;
+    }
+
     const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
     let newNote = { id: randomNumber, ...eachNote };
-    eachNote.note && setNoteItem([...noteItems, newNote]);
+    let processToDo = [...noteItems, newNote];
+    setNoteItem([...noteItems, newNote]);
     setEachNote({ id: randomNumber, note: undefined });
-    callback();
-  }
+
+    callback(processToDo);
+  };
+
+  const storeItems = () => {
+    storeData((processToDo: any) => {
+      console.log(processToDo);
+      setTodo([...todos, { title, noteItems: processToDo }]); // Final State for Todo Card
+      setEachNote({ id: 0, note: undefined, checked: false });
+      setIsVisible(!isVisible);
+    });
+  };
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
@@ -29,11 +48,10 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     }
   };
 
-  const storeItems = () => {
-    storeData(() => {
-      setTodo([...todos, noteItems]);
-      setIsVisible(!isVisible);
-    });
+  const handleCancel = () => {
+    setIsVisible(!isVisible);
+    setNoteItem([]);
+    setEachNote({ id: noteItems.length, note: undefined, checked: false });
   };
 
   const updateCheck = (checked: boolean, id: number | null) => {
@@ -49,9 +67,20 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     <>
       <div className="modal-wrapper" style={{ display: isVisible ? "" : "none" }}>
         <div className="modal-card">
-          <input type="text" placeholder="Title" className="title" />
+          <input
+            type="text"
+            placeholder="Title"
+            className="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
           <div className="description">
-            <CreateTick keyevent={handleKeyPress} setEachNote={setEachNote} eachNote={eachNote} />
+            <CreateTick
+              keyevent={handleKeyPress}
+              setEachNote={setEachNote}
+              eachNote={eachNote}
+              handleChange={handleChange}
+            />
 
             {[...noteItems].reverse().map((note: any) => {
               return <ShowTick SavedData={note} updateCheck={updateCheck} />;
@@ -59,7 +88,11 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
           </div>
           <div className="modal-menu">
             <li onClick={storeItems}>Save</li>
-            <li onClick={() => setIsVisible(!isVisible)}>Cancel</li>
+            <li onClick={handleCancel}>Cancel</li>
+            <li onClick={() => console.log(todos)}>Todos</li>
+            <li onClick={() => console.log(noteItems)}>Notes</li>
+            <li onClick={() => console.log(eachNote)}>Typing</li>
+            <li onClick={() => storeData(() => {})}>Store</li>
           </div>
         </div>
       </div>

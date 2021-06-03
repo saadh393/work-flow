@@ -1,6 +1,6 @@
 import { CreateTicketProps } from "../../../util/interfaces";
 
-const CreateTick = ({ eachNote, setEachNote, keyevent }: CreateTicketProps) => {
+const CreateTick = ({ eachNote, setEachNote, keyevent, handleChange }: CreateTicketProps) => {
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
       if (eachNote?.note) {
@@ -10,9 +10,7 @@ const CreateTick = ({ eachNote, setEachNote, keyevent }: CreateTicketProps) => {
       }
     }
   };
-  const handleChange = (e: any) => {
-    setEachNote({ ...eachNote, note: e.target.value });
-  };
+
   const handleCheck = (e: any) => {
     setEachNote({ ...eachNote, checked: e.target.checked });
   };
@@ -24,7 +22,7 @@ const CreateTick = ({ eachNote, setEachNote, keyevent }: CreateTicketProps) => {
         type="text"
         className="modalTick-input"
         value={eachNote?.note}
-        onChange={handleChange}
+        onChange={(e) => handleChange(e)}
         onKeyPress={handleKeyPress}
         style={{
           textDecoration: eachNote?.checked ? "line-through" : "",

@@ -2,6 +2,7 @@ export interface CreateTicketProps {
   eachNote?: NoteProvider;
   setEachNote: (args?: any) => void;
   keyevent: (arg?: any) => void;
+  handleChange: (arg?: any) => void;
 }
 
 export interface NoteProvider {

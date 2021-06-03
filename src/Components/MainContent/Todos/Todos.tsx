@@ -7,7 +7,7 @@ const Todos = () => {
   return (
     <section className="todo-section">
       <h1>Todos</h1>
-
+      {console.log(todos)}
       <div className="todo-wrapper">
         {todos.map((todo) => (
           <TodoCard todo={todo} />
