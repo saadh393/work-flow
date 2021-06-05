@@ -1,6 +1,6 @@
 import { ShowTickProps } from "../../../util/interfaces";
 
-const ShowTick = ({ SavedData, updateCheck }: ShowTickProps) => {
+const ShowTick = ({ SavedData, updateCheck, updateNote }: ShowTickProps) => {
   return (
     <div className="modaltick-wrapper">
       <input
@@ -12,6 +12,7 @@ const ShowTick = ({ SavedData, updateCheck }: ShowTickProps) => {
         type="text"
         className="modalTick-input"
         value={SavedData.note}
+        onChange={(e) => updateNote(e.target.value, SavedData.id)}
         style={{
           textDecoration: SavedData.checked ? "line-through" : "",
         }}

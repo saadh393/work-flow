@@ -1,0 +1,125 @@
+.uploadDialog {
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dialog {
+  width: 400px;
+  height: fit-content;
+  /* height: 420px; */
+  background: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 11;
+  border-radius: 20px;
+  box-shadow: 4px 4px 14px 0 rgb(135 135 135 / 30%);
+  transform: translate(-50%, -50%);
+  border: 1.4px solid #6865655c;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.dialog h2 {
+  font-weight: 600;
+  margin-top: 2rem;
+  font-size: 1.8rem;
+  margin-bottom: 0;
+}
+
+.dialog p {
+  font-size: 14px;
+  color: rgb(131, 131, 131);
+  margin-top: 0;
+}
+
+.uploadInput {
+  padding: 3rem;
+  margin-top: 2rem;
+  border-radius: 1rem;
+  border: 2.3px dashed rgba(122, 99, 224, 0.363);
+  cursor: pointer;
+  transition: border 1s ease-in-out;
+}
+
+.uploadInput:hover {
+  border: 2.3px solid rgba(122, 99, 224, 0.363);
+}
+
+.uploadInput img {
+  width: 80px;
+}
+
+.uploadInput p {
+  margin-top: 5px;
+}
+
+.imagePreview {
+  width: 100%;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.imagePreview span {
+  position: absolute;
+  background-color: indianred;
+  right: -15px;
+  top: -15px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.imagePreview img {
+  width: 100%;
+}
+
+/* Upload Progress  */
+.uploadProgress {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  gap: 10px;
+}
+.uploadProgress img {
+  width: 50px;
+}
+.titleProgress {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+
+.titleProgress h4 {
+  font-weight: 600;
+}
+.titleProgress .progress {
+  width: 100%;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.closeBtn {
+  width: 50px;
+  display: grid;
+  place-items: center;
+}
+
+.closeBtn img {
+  width: 24px;
+}

@@ -7,7 +7,7 @@ const TodoCard = ({ todo }: any) => {
       <h3>{todo.title}</h3>
 
       <div className="cardContent">
-        {todo.noteItems.map((tick: any) => (
+        {[...todo.noteItems].reverse().map((tick: any) => (
           <TickItem listItem={tick.note} isChecked={tick.checked} />
         ))}
       </div>

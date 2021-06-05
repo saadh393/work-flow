@@ -2,7 +2,6 @@ import "./NavHeader.css";
 import logo from "../../../images/logoLow.png";
 import animaton from "./62139-hamburger.json";
 import Lottie from "lottie-react-web";
-import { useContext, useState } from "react";
 import React from "react";
 import { useToggleEvents } from "../../../App";
 
@@ -13,7 +12,7 @@ const NavHeader = () => {
     <>
       <nav>
         <div className="brand">
-          <img src={logo} />
+          <img src={logo} alt="Logo" />
           <h1>Work Flow</h1>
         </div>
         <div className="hamBurger" onClick={() => setToggle(!toggle)}>

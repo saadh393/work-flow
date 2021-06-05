@@ -17,6 +17,7 @@
   padding: 1rem;
   box-sizing: border-box;
   margin-top: 8px;
+  overflow: hidden;
 }
 
 .card h3 {
@@ -25,6 +26,8 @@
 
 .cardContent {
   margin-top: 2rem;
+  height: 80%;
+  overflow: hidden;
 }
 
 .tickRow {

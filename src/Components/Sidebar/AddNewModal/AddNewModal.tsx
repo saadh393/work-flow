@@ -28,8 +28,7 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     let newNote = { id: randomNumber, ...eachNote };
     let processToDo = [...noteItems, newNote];
     setNoteItem([...noteItems, newNote]);
-    setEachNote({ id: randomNumber, note: undefined });
-
+    setEachNote({ id: randomNumber, note: "" });
     callback(processToDo);
   };
 
@@ -37,7 +36,9 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     storeData((processToDo: any) => {
       console.log(processToDo);
       setTodo([...todos, { title, noteItems: processToDo }]); // Final State for Todo Card
-      setEachNote({ id: 0, note: undefined, checked: false });
+      setTitle("");
+      setNoteItem([]);
+      setEachNote({ id: 0, note: "", checked: false });
       setIsVisible(!isVisible);
     });
   };
@@ -63,6 +64,15 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     setNoteItem(copyNoteItem);
   };
 
+  const updateNote = (note: string, id: number | null) => {
+    let copyNoteItem: NoteProvider[] = [...noteItems];
+    let index = copyNoteItem.findIndex((obj) => obj?.id === id);
+    if (copyNoteItem[index].id === id) {
+      copyNoteItem[index].note = note;
+    }
+    setNoteItem(copyNoteItem);
+  };
+
   return (
     <>
       <div className="modal-wrapper" style={{ display: isVisible ? "" : "none" }}>
@@ -83,16 +93,16 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
             />
 
             {[...noteItems].reverse().map((note: any) => {
-              return <ShowTick SavedData={note} updateCheck={updateCheck} />;
+              return <ShowTick SavedData={note} updateCheck={updateCheck} updateNote={updateNote} />;
             })}
           </div>
           <div className="modal-menu">
             <li onClick={storeItems}>Save</li>
             <li onClick={handleCancel}>Cancel</li>
-            <li onClick={() => console.log(todos)}>Todos</li>
+            {/* <li onClick={() => console.log(todos)}>Todos</li>
             <li onClick={() => console.log(noteItems)}>Notes</li>
             <li onClick={() => console.log(eachNote)}>Typing</li>
-            <li onClick={() => storeData(() => {})}>Store</li>
+            <li onClick={() => storeData(() => {})}>Store</li> */}
           </div>
         </div>
       </div>
