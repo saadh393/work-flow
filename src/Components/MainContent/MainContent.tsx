@@ -2,11 +2,12 @@ import NavHeader from "./NavHeader/NavHeader";
 import Story from "./Story/Story";
 import Todos from "./Todos/Todos";
 import UploadDialog from "../MainContent/UploadDialog/UploadDialog";
+import { uploadDialogState } from "../../util/interfaces";
 
-const MainContent = () => {
+const MainContent = ({ uploadState, setUploadState }: uploadDialogState) => {
   return (
     <>
-      <UploadDialog />
+      {uploadState && <UploadDialog setUploadState={setUploadState} />}
       <NavHeader />
       <div className="mainContentWrapper">
         <Story />

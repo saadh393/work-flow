@@ -1,10 +1,14 @@
 import { ImagePreview } from "../../../util/interfaces";
 
-const UploadPreview = ({ image, setimage }: ImagePreview) => {
+const UploadPreview = ({ image, setimage, progress, setProgress }: ImagePreview) => {
+  const handleCancelImage = () => {
+    setimage(null);
+    setProgress(null);
+  };
   return (
     <>
       <div className="imagePreview">
-        <span onClick={() => setimage(null)}>X</span>
+        {progress !== 100 && <span onClick={handleCancelImage}>X</span>}
         <img src={image} alt="" />
       </div>
     </>
