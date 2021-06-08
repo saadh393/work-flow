@@ -4,6 +4,7 @@ import "./AddNewModal.css";
 import React, { useState } from "react";
 import { useToggleEvents } from "../../../App";
 import ShowTick from "./ShowTick";
+import { setNote } from "../../../util/firestore";
 
 const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
   const { todos, setTodo } = useToggleEvents();
@@ -40,6 +41,7 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
   const storeItems = () => {
     storeData((processToDo: any) => {
       console.log(processToDo);
+      setNote({ title, noteItems: processToDo });
       setTodo([...todos, { title, noteItems: processToDo }]); // Final State for Todo Card
       setTitle("");
       setNoteItem([]);

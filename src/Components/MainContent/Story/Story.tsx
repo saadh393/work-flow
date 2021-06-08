@@ -12,17 +12,17 @@ const Story = () => {
   useEffect(() => {
     scrollStories();
     SliderGrab();
-    const postRef = database.ref("/stories/");
-    postRef.on(
-      "value",
-      (snapshot) => {
-        console.log(Object.values(snapshot.val()));
-        setStories(Object.values(snapshot.val()));
-      },
-      (errorObject) => {
-        console.log("The read failed: " + errorObject.name);
-      }
-    );
+    // const postRef = database.ref("/stories/");
+    // postRef.on(
+    //   "value",
+    //   (snapshot) => {
+    //     console.log(Object.values(snapshot.val()));
+    //     setStories(Object.values(snapshot.val()));
+    //   },
+    //   (errorObject) => {
+    //     console.log("The read failed: " + errorObject.name);
+    //   }
+    // );
   }, []);
 
   return (
