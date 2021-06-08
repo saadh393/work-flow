@@ -48,3 +48,11 @@ export interface uploadDialogState {
 export interface UploadDialogInterface {
   setUploadState: (args: boolean) => void;
 }
+
+export interface Story {
+  story: StoryType;
+}
+interface StoryType {
+  url: string;
+  userName: string;
+}

@@ -18,9 +18,31 @@
 /* Each Card */
 
 .story-card {
-  min-width: 160px;
+  max-width: 160px;
   height: 210px;
   border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.story-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-card .userInfo {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 5px;
+  background: linear-gradient(to top, rgba(2, 1, 1, 0.767), rgba(2, 1, 1, 0));
+  width: 100%;
+}
+.story-card p {
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 /* Own Story */
