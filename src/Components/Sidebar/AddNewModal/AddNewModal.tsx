@@ -20,15 +20,20 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
   };
 
   const storeData = (callback: Function) => {
-    if (!eachNote.note) {
+    console.log(noteItems.length);
+    if (!eachNote.note && noteItems.length === 0) {
       return;
     }
-
-    const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
-    let newNote = { id: randomNumber, ...eachNote };
-    let processToDo = [...noteItems, newNote];
-    setNoteItem([...noteItems, newNote]);
-    setEachNote({ id: randomNumber, note: "" });
+    let processToDo;
+    if (eachNote.note) {
+      const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
+      let newNote = { id: randomNumber, ...eachNote };
+      processToDo = [...noteItems, newNote];
+      setNoteItem([...noteItems, newNote]);
+      setEachNote({ id: randomNumber, note: "" });
+    } else {
+      processToDo = [...noteItems];
+    }
     callback(processToDo);
   };
 

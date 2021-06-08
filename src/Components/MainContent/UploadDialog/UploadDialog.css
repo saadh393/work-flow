@@ -23,7 +23,7 @@
   box-shadow: 4px 4px 14px 0 rgb(135 135 135 / 30%);
   transform: translate(-50%, -50%);
   border: 1.4px solid #6865655c;
-  padding: 2rem;
+  padding: 1.6rem;
   box-sizing: border-box;
   text-align: center;
   transition: height 0.4s ease-in-out;
@@ -119,7 +119,7 @@
 
 .imagePreview img {
   width: 100%;
-  max-height: 300px;
+  max-height: 250px;
   object-fit: cover;
 }
 
@@ -141,12 +141,15 @@
 .uploadProgress {
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
+  margin-top: 1rem;
   gap: 10px;
   position: relative;
   transition: bottom 1s ease-in-out;
   animation: progressDialog 0.4s ease-in forwards;
   bottom: -100px;
+  background: #fff;
+  padding: 0.5rem;
+  border-radius: 10px;
 }
 
 @keyframes progressDialog {
@@ -164,7 +167,7 @@
 }
 
 .uploadProgress img {
-  width: 50px;
+  width: 40px;
   transition: margin 1s ease-in-out;
   animation: uploadImage 1.3s;
 }

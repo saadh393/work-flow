@@ -13,28 +13,28 @@ import { ImagePreview, UploadDialogInterface } from "../../../util/interfaces";
 import UploadPreview from "./UploadPreview";
 import UploadInputBox from "./UploadInputBox";
 import UploadProgress from "./UploadProgress";
-import firebase from "firebase/app";
+import firebase from "../../../util/firebase.config";
 import "firebase/storage";
 import close from "../../../images/Icons/close.svg";
 
 const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
-  const firebaseConfig = {
-    apiKey: "AIzaSyChCI0lkOdXycjalK4OL8M2EJbb93NBhSY",
-    authDomain: "archer-4d1a8.firebaseapp.com",
-    databaseURL: "https://archer-4d1a8.firebaseio.com",
-    projectId: "archer-4d1a8",
-    storageBucket: "archer-4d1a8.appspot.com",
-    messagingSenderId: "327515106806",
-    appId: "1:327515106806:web:556aeb4081885274a8ebd7",
-    measurementId: "G-073RXQYQK0",
-  };
+  // const firebaseConfig = {
+  //   apiKey: "AIzaSyChCI0lkOdXycjalK4OL8M2EJbb93NBhSY",
+  //   authDomain: "archer-4d1a8.firebaseapp.com",
+  //   databaseURL: "https://archer-4d1a8.firebaseio.com",
+  //   projectId: "archer-4d1a8",
+  //   storageBucket: "archer-4d1a8.appspot.com",
+  //   messagingSenderId: "327515106806",
+  //   appId: "1:327515106806:web:556aeb4081885274a8ebd7",
+  //   measurementId: "G-073RXQYQK0",
+  // };
 
   useEffect(() => {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    } else {
-      firebase.app();
-    }
+    // if (!firebase.apps.length) {
+    //   firebase.initializeApp(firebaseConfig);
+    // } else {
+    //   firebase.app();
+    // }
   });
 
   const [image, setimage] = useState<ImagePreview>();
@@ -42,6 +42,7 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
   const [progress, setProgress] = useState<number | null>(null);
 
   const firebaseUpload = (file: any) => {
+    setProgress(4);
     const storage = firebase.storage();
     let uploadTask = storage.ref().child(`images/${file.name}`).put(file);
     uploadTask.on(
@@ -49,9 +50,9 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
       (snapshort: any) => {
         const progress = Math.round((snapshort.bytesTransferred / snapshort.totalBytes) * 100);
         setProgress(progress);
-        if (progress === 100) {
-          setProgress(null);
-        }
+        // if (progress === 100) {
+        //   setProgress(null);
+        // }
         console.log(progress);
       },
       (error) => {
@@ -64,9 +65,8 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
     console.log(file);
     let fileType = file?.type;
     let validFileExtensions = ["image/jpeg", "image/jpg", "image/png"];
-
+    //&& file.size < 200000
     if (validFileExtensions.includes(fileType)) {
-      setProgress(10);
       firebaseUpload(file);
       let fileReader = new FileReader();
       fileReader.onload = () => {
@@ -74,6 +74,10 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
         setimage(fileUrl);
       };
       fileReader.readAsDataURL(file);
+    } else {
+      if (file.size > 200000) {
+        alert("Image Size Must be less than 200KB");
+      }
     }
   };
 
