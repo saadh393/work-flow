@@ -1,6 +1,10 @@
 .todo-section {
   margin-top: 2rem;
 }
+
+.todo-section a {
+  text-decoration: none;
+}
 .todo-wrapper {
   margin-top: 1.4rem;
   display: flex;

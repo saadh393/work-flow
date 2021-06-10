@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import "./App.css";
 import Index from "./Pages/Index";
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import Note from "./Components/MainContent/Note/Note";
 
 /** @Todo Cleanup The Code Create Exernal Files */
 export type TogglerType = {
@@ -27,7 +29,14 @@ function App() {
 
   return (
     <EventContext.Provider value={{ toggle, setToggle, todos, setTodo }}>
-      <Index />
+      <BrowserRouter>
+        <Index />
+        <Switch>
+          <Route path="/note/:Noteid">
+            <Note />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </EventContext.Provider>
   );
 }

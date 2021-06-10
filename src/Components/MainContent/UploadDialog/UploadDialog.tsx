@@ -30,18 +30,18 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
           <p>File Should be Jpg, JPEG, PNG</p>
           <img src={close} alt="" className="closeDialog" onClick={(e) => setUploadState(false)} />
 
-          {image ? (
-            <UploadPreview image={image} setimage={setimage} progress={progress} setProgress={setProgress} />
-          ) : (
-            <UploadInputBox
-              handleUploadEvent={() => handleUploadEvent(fileRef)}
-              handleFileDrop={(e) => handleFileDrop(e, setimage, setProgress)}
-              handleDragOver={handleDragOver}
-              fileRef={fileRef}
-              handleChoosenFile={(e) => handleChoosenFile(e, setimage, setProgress)}
-              fileUpload={fileUpload}
-            />
-          )}
+          <UploadInputBox
+            handleUploadEvent={() => handleUploadEvent(fileRef)}
+            handleFileDrop={(e) => handleFileDrop(e, setimage, setProgress)}
+            handleDragOver={handleDragOver}
+            fileRef={fileRef}
+            handleChoosenFile={(e) => handleChoosenFile(e, setimage, setProgress)}
+            fileUpload={fileUpload}
+            image={image}
+            setimage={setimage}
+            progress={progress}
+            setProgress={setProgress}
+          />
 
           {progress && <UploadProgress progress={progress} />}
         </div>

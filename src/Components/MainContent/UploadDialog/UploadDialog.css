@@ -21,6 +21,7 @@
   z-index: 11;
   border-radius: 20px;
   box-shadow: 4px 4px 14px 0 rgb(135 135 135 / 30%);
+  transition: all 0.3s ease-in, display 0.5s ease-in;
   transform: translate(-50%, -50%);
   border: 1.4px solid #6865655c;
   padding: 1.6rem;
@@ -64,7 +65,11 @@
 }
 
 .uploadInput {
-  padding: 3rem;
+  padding: 0rem;
+  height: 300px;
+  display: grid;
+  place-items: center;
+  align-content: center;
   margin-top: 2rem;
   border-radius: 1rem;
   border: 2.3px dashed rgba(122, 99, 224, 0.363);
@@ -87,10 +92,9 @@
 .imagePreview {
   width: 100%;
   position: relative;
-  margin-top: 2rem;
   animation: imagePreviewAnim 0.5s ease-out backwards;
   /* top: -100px; */
-  transition: top 0.6s ease-out;
+  transition: top 0.6s ease-out, display 0.4s ease-in-out;
 }
 @keyframes imagePreview {
   0% {
@@ -104,8 +108,8 @@
 .imagePreview span {
   position: absolute;
   background-color: indianred;
-  right: -15px;
-  top: -15px;
+  right: 30px;
+  top: -10px;
   width: 25px;
   height: 25px;
   display: flex;
@@ -118,9 +122,11 @@
 }
 
 .imagePreview img {
-  width: 100%;
-  max-height: 250px;
+  width: 75%;
+  max-height: 240px;
   object-fit: cover;
+  border-radius: 7px;
+  transition: all 0.4s ease-in-out;
 }
 
 .successUpload {
@@ -144,8 +150,8 @@
   margin-top: 1rem;
   gap: 10px;
   position: relative;
-  transition: bottom 1s ease-in-out;
-  animation: progressDialog 0.4s ease-in forwards;
+  transition: bottom 0.2s ease-in-out, all 0.3s ease-in;
+  animation: progressDialog 0.2s ease-in forwards;
   bottom: -100px;
   background: #fff;
   padding: 0.5rem;

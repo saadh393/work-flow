@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import TodoCard from "./TodoCard";
 import "./Todo.css";
 import { useToggleEvents } from "../../../App";
@@ -15,10 +16,9 @@ const Todos = () => {
   return (
     <section className="todo-section">
       <h1>Todos</h1>
-      {console.log(todos)}
       <div className="todo-wrapper">
         {todos.map((todo) => (
-          <TodoCard todo={todo} />
+          <TodoCard todo={todo} key={todo} />
         ))}
       </div>
     </section>

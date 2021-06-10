@@ -1,4 +1,5 @@
 import { UploadInputHandler } from "../../../util/interfaces";
+import UploadPreview from "./UploadPreview";
 
 const UploadInputBox = ({
   handleUploadEvent,
@@ -7,6 +8,10 @@ const UploadInputBox = ({
   fileRef,
   handleChoosenFile,
   fileUpload,
+  image,
+  setimage,
+  progress,
+  setProgress,
 }: UploadInputHandler) => {
   return (
     <>
@@ -24,8 +29,15 @@ const UploadInputBox = ({
           accept="image/png, image/jpeg, image/png"
           onChange={(e) => handleChoosenFile(e)}
         />
-        <img src={fileUpload} alt="" />
-        <p>Choose Your File</p>
+
+        {image ? (
+          <UploadPreview image={image} setimage={setimage} progress={progress} setProgress={setProgress} />
+        ) : (
+          <>
+            <img src={fileUpload} alt="" />
+            <p>Choose Your File</p>
+          </>
+        )}
       </div>
     </>
   );

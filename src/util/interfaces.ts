@@ -38,6 +38,10 @@ export interface UploadInputHandler {
   handleChoosenFile: (args?: any) => void;
   fileRef: any;
   fileUpload: any;
+  image: any;
+  progress: any;
+  setimage: (args?: any) => void;
+  setProgress: (args?: any) => void;
 }
 
 export interface uploadDialogState {

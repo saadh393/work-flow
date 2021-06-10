@@ -40,9 +40,9 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
 
   const storeItems = () => {
     storeData((processToDo: any) => {
-      console.log(processToDo);
-      setNote({ title, noteItems: processToDo });
-      setTodo([...todos, { title, noteItems: processToDo }]); // Final State for Todo Card
+      const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
+      setNote({ id: randomNumber, title, noteItems: processToDo }); // Firebase Uploading
+      setTodo([...todos, { id: randomNumber, title, noteItems: processToDo }]); // Final State for Todo Card
       setTitle("");
       setNoteItem([]);
       setEachNote({ id: 0, note: "", checked: false });
@@ -106,10 +106,6 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
           <div className="modal-menu">
             <li onClick={storeItems}>Save</li>
             <li onClick={handleCancel}>Cancel</li>
-            {/* <li onClick={() => console.log(todos)}>Todos</li>
-            <li onClick={() => console.log(noteItems)}>Notes</li>
-            <li onClick={() => console.log(eachNote)}>Typing</li>
-            <li onClick={() => storeData(() => {})}>Store</li> */}
           </div>
         </div>
       </div>
