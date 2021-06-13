@@ -1,10 +1,12 @@
 import firebase, { database } from "../util/firebase.config";
 
-const storeImageUrl = (url: string, userName: string = "Unknown") => {
-  const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100000);
+let username = "unknown";
+
+const storeImageUrl = (url: string) => {
+  const randomNumber: number = new Date().getTime() + Math.floor(Math.random() * 100000);
   database.ref("/stories/" + randomNumber).set({
     url,
-    userName,
+    username,
   });
 };
 
@@ -47,8 +49,9 @@ export const handleFilePreview = (file: any, setimage: any, setProgress: any) =>
   }
 };
 
-export const handleChoosenFile = (e: any, setimage: any, setProgress: any) => {
+export const handleChoosenFile = (e: any, setimage: any, setProgress: any, usname: string) => {
   const file = e.target.files[0];
+  username = usname;
   handleFilePreview(file, setimage, setProgress);
 };
 

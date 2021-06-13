@@ -7,12 +7,13 @@ type itemType = {
 const TickItem = ({ listItem, isChecked }: itemType) => {
   const [checkStatus, setCheck] = useState(isChecked);
   return (
-    <div className="tickRow">
-      <input type="checkbox" onChange={() => setCheck(!checkStatus)} checked={checkStatus} />
+    <div className='tickRow'>
+      <input type='checkbox' checked={checkStatus} onChange={() => console.log("Nothing")} />
       <input
         style={{ textDecoration: checkStatus ? "line-through" : "" }}
         value={listItem}
-        className="tickrow_inputText"
+        className='tickrow_inputText'
+        onChange={() => console.log("Nothing")}
       />
     </div>
   );

@@ -9,33 +9,34 @@
 import "firebase/storage";
 import "./UploadDialog.css";
 import { useRef, useState } from "react";
-import UploadPreview from "./UploadPreview";
 import UploadInputBox from "./UploadInputBox";
 import UploadProgress from "./UploadProgress";
 import close from "../../../images/Icons/close.svg";
 import fileUpload from "../../../images/Icons/file.svg";
 import { ImagePreview, UploadDialogInterface } from "../../../util/interfaces";
 import { handleChoosenFile, handleDragOver, handleFileDrop, handleUploadEvent } from "../../../handlers/UploadHandler";
+import { useToggleEvents } from "../../../App";
 
 const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
+  const { user } = useToggleEvents();
   const [image, setimage] = useState<ImagePreview>();
   const fileRef = useRef<any>(null);
   const [progress, setProgress] = useState<number | null>(null);
 
   return (
     <>
-      <div className="uploadDialog" onClick={(e) => setUploadState(false)}>
-        <div className="dialog" onClick={(e) => e.stopPropagation()}>
+      <div className='uploadDialog' onClick={(e) => setUploadState(false)}>
+        <div className='dialog' onClick={(e) => e.stopPropagation()}>
           <h2>Upload Your Story</h2>
           <p>File Should be Jpg, JPEG, PNG</p>
-          <img src={close} alt="" className="closeDialog" onClick={(e) => setUploadState(false)} />
+          <img src={close} alt='' className='closeDialog' onClick={(e) => setUploadState(false)} />
 
           <UploadInputBox
             handleUploadEvent={() => handleUploadEvent(fileRef)}
             handleFileDrop={(e) => handleFileDrop(e, setimage, setProgress)}
             handleDragOver={handleDragOver}
             fileRef={fileRef}
-            handleChoosenFile={(e) => handleChoosenFile(e, setimage, setProgress)}
+            handleChoosenFile={(e) => handleChoosenFile(e, setimage, setProgress, user.username)}
             fileUpload={fileUpload}
             image={image}
             setimage={setimage}

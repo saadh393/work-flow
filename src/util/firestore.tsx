@@ -15,7 +15,10 @@ export const getNotes = async () => {
 };
 
 export const setNote = (args: any) => {
-  db.collection("Notes").add(args);
+  db.collection("Notes")
+    .doc(new Date().getTime() + "")
+    .set(args);
+  // db.collection("Notes").doc().add(args);
 };
 
 export default db;

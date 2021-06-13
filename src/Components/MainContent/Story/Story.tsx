@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import CardStory from "./CardStory";
-import OwnStory from "./OwnStory";
 import "./Story.css";
 import { scrollStories, SliderGrab } from "../../../util/util";
-
 import { database } from "../../../util/firebase.config";
 
 const Story = () => {
@@ -28,9 +26,11 @@ const Story = () => {
   return (
     <>
       <h2>Share your Experience</h2>
-      <div className="card-wrapper">
-        <OwnStory />
-        {stories.length && stories.map((story) => <CardStory story={story} />)}
+      <div className='card-wrapper'>
+        {/* <OwnStory /> */}
+        {stories.map((story) => (
+          <CardStory story={story} />
+        ))}
       </div>
     </>
   );

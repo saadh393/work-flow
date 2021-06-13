@@ -5,12 +5,13 @@ import TickItem from "./TickItem";
 const TodoCard = ({ todo }: any) => {
   return (
     <Link to={`/note/${todo.id}`}>
-      <div className="card">
-        <h3>{todo.title}</h3>
+      <div className='card'>
+        <h3>{todo.title.length > 23 ? todo.title.slice(0, 22) + "..." : todo.title}</h3>
+        <span className='userName'>@{todo.user.name}</span>
 
-        <div className="cardContent">
-          {[...todo.noteItems].reverse().map((tick: any) => (
-            <TickItem listItem={tick.note} isChecked={tick.checked} />
+        <div className='cardContent'>
+          {[...todo.noteItems].reverse().map((tick, index: any) => (
+            <TickItem listItem={tick.note} isChecked={tick.checked} key={index} />
           ))}
         </div>
       </div>

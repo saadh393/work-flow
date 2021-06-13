@@ -14,11 +14,11 @@ const Todos = () => {
   }, []);
 
   return (
-    <section className="todo-section">
+    <section className='todo-section'>
       <h1>Todos</h1>
-      <div className="todo-wrapper">
-        {todos.map((todo) => (
-          <TodoCard todo={todo} key={todo} />
+      <div className='todo-wrapper'>
+        {todos.map((todo, index) => (
+          <TodoCard todo={todo} key={index} />
         ))}
       </div>
     </section>

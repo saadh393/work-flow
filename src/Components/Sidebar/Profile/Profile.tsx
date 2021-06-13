@@ -1,13 +1,16 @@
+import { useToggleEvents } from "../../../App";
 import profilePic from "../../../images/profilePic.png";
 import "./Profile.css";
 
 const Profile = () => {
+  const { user } = useToggleEvents();
+
   return (
     <>
-      <div className="profilePicture">
-        <img src={profilePic} />
+      <div className='profilePicture'>
+        {user.photo ? <img src={user.photo} alt={user.name} /> : <img src={profilePic} alt={user.name} />}
       </div>
-      <h1 className="profileUsername">Annonymous</h1>
+      <h1 className='profileUsername'>{user.name}</h1>
     </>
   );
 };

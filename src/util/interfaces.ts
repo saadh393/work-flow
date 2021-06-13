@@ -11,9 +11,10 @@ export interface NoteProvider {
   note?: string | undefined;
 }
 
-export interface ShowTickProps {
+export interface ShowTickProp {
   SavedData: NoteProvider;
   updateCheck: (checked: boolean, id: number | null) => void;
+  deleteItem: (id: number | null) => void;
   updateNote: (note: string, id: number | null) => void;
 }
 

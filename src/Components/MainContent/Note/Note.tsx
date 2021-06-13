@@ -31,12 +31,14 @@ const Note = () => {
     history.push("/");
   };
 
+  const deleteItem = (id: number | null) => {};
+
   return (
     <>
-      <div className="modal-wrapper">
-        <div className="modal-card">
-          {EachNote && <input type="text" placeholder="Title" className="title" value={EachNote.title} />}
-          <div className="description">
+      <div className='modal-wrapper'>
+        <div className='modal-card'>
+          {EachNote && <input type='text' placeholder='Title' className='title' value={EachNote.title} />}
+          <div className='description'>
             {/* <CreateTick
               keyevent={handleKeyPress}
               setEachNote={setEachNote}
@@ -46,10 +48,18 @@ const Note = () => {
 
             {EachNote &&
               [...EachNote.noteItems].reverse().map((note: any) => {
-                return <ShowTick SavedData={note} updateCheck={updateCheck} updateNote={updateNote} />;
+                return (
+                  <ShowTick
+                    SavedData={note}
+                    updateCheck={updateCheck}
+                    updateNote={updateNote}
+                    deleteItem={deleteItem}
+                    deleteVisible={false}
+                  />
+                );
               })}
           </div>
-          <div className="modal-menu">
+          <div className='modal-menu'>
             {/* <li onClick={storeItems}>Save</li> */}
             <li onClick={handleCancel}>Dissmiss</li>
           </div>

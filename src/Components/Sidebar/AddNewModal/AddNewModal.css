@@ -101,3 +101,25 @@
   outline: 0;
   font-weight: 500;
 }
+
+.deleteSVG {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: fill 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.deletePath {
+  transition: fill 0.4s ease-in-out;
+  fill: rgb(53, 53, 53) !important;
+}
+
+.deleteSVG:hover .deletePath {
+  fill: red;
+  transition: fill 0.2s ease-in-out;
+}
+
+.deleteSVG:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease-in-out;
+}

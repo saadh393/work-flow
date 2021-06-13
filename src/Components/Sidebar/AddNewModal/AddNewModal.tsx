@@ -7,7 +7,7 @@ import ShowTick from "./ShowTick";
 import { setNote } from "../../../util/firestore";
 
 const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
-  const { todos, setTodo } = useToggleEvents();
+  const { todos, setTodo, user } = useToggleEvents();
   const [title, setTitle] = useState("");
   const [noteItems, setNoteItem] = React.useState<NoteProvider[]>([]);
   const [eachNote, setEachNote] = React.useState<NoteProvider>({
@@ -41,8 +41,9 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
   const storeItems = () => {
     storeData((processToDo: any) => {
       const randomNumber: number = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 1000);
-      setNote({ id: randomNumber, title, noteItems: processToDo }); // Firebase Uploading
-      setTodo([...todos, { id: randomNumber, title, noteItems: processToDo }]); // Final State for Todo Card
+      let nTitle = title.length ? title : "Untitled";
+      setNote({ id: randomNumber, title: nTitle, noteItems: processToDo, user: user }); // Firebase Uploading
+      setTodo([...todos, { id: randomNumber, title: nTitle, noteItems: processToDo, user: user }]); // Final State for Todo Card
       setTitle("");
       setNoteItem([]);
       setEachNote({ id: 0, note: "", checked: false });
@@ -80,18 +81,23 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
     setNoteItem(copyNoteItem);
   };
 
+  const deleteItem = (id: number | null) => {
+    const filtered = noteItems.filter((note) => note.id !== id);
+    setNoteItem(filtered);
+  };
+
   return (
     <>
-      <div className="modal-wrapper" style={{ display: isVisible ? "" : "none" }}>
-        <div className="modal-card">
+      <div className='modal-wrapper' style={{ display: isVisible ? "" : "none" }}>
+        <div className='modal-card'>
           <input
-            type="text"
-            placeholder="Title"
-            className="title"
+            type='text'
+            placeholder='Title'
+            className='title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <div className="description">
+          <div className='description'>
             <CreateTick
               keyevent={handleKeyPress}
               setEachNote={setEachNote}
@@ -100,10 +106,18 @@ const AddNewModal = ({ isVisible, setIsVisible }: ModalVisibility) => {
             />
 
             {[...noteItems].reverse().map((note: any) => {
-              return <ShowTick SavedData={note} updateCheck={updateCheck} updateNote={updateNote} />;
+              return (
+                <ShowTick
+                  SavedData={note}
+                  updateCheck={updateCheck}
+                  updateNote={updateNote}
+                  deleteItem={deleteItem}
+                  deleteVisible={true}
+                />
+              );
             })}
           </div>
-          <div className="modal-menu">
+          <div className='modal-menu'>
             <li onClick={storeItems}>Save</li>
             <li onClick={handleCancel}>Cancel</li>
           </div>

@@ -1,8 +1,9 @@
 import { createContext, useContext, useState } from "react";
 import "./App.css";
 import Index from "./Pages/Index";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Note from "./Components/MainContent/Note/Note";
+import { useEffect } from "react";
 
 /** @Todo Cleanup The Code Create Exernal Files */
 export type TogglerType = {
@@ -11,6 +12,9 @@ export type TogglerType = {
 
   todos: object[];
   setTodo: (args: any) => void;
+
+  user: any;
+  setUser: (args: any) => void;
 };
 
 export const EventContext = createContext<TogglerType>({
@@ -19,6 +23,9 @@ export const EventContext = createContext<TogglerType>({
 
   todos: [],
   setTodo: () => {},
+
+  user: {},
+  setUser: () => {},
 });
 
 export const useToggleEvents = () => useContext(EventContext);
@@ -26,13 +33,18 @@ export const useToggleEvents = () => useContext(EventContext);
 function App() {
   const [toggle, setToggle] = useState(false);
   const [todos, setTodo] = useState([]);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    setUser({ name: "Saad Hasan", email: "test@email.com" });
+  }, []);
 
   return (
-    <EventContext.Provider value={{ toggle, setToggle, todos, setTodo }}>
+    <EventContext.Provider value={{ toggle, setToggle, todos, setTodo, user, setUser }}>
       <BrowserRouter>
         <Index />
         <Switch>
-          <Route path="/note/:Noteid">
+          <Route path='/note/:Noteid'>
             <Note />
           </Route>
         </Switch>
