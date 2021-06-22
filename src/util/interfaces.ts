@@ -59,5 +59,5 @@ export interface Story {
 }
 interface StoryType {
   url: string;
-  userName: string;
+  username: string;
 }

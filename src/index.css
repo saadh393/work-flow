@@ -2,36 +2,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Pattaya&display=swap");
 
 :root {
-  --primary: #1f2585;
-  --primaryHover: hsl(236, 52%, 35%);
-  --textPrimary: #1e04bd;
-  --white: #fff;
-  --black: #423939;
+	--primary: #1f2585;
+	--primaryHover: hsl(236, 52%, 35%);
+	--textPrimary: #1e04bd;
+	--white: #fff;
+	--black: #423939;
 }
 
 * {
-  color: var(--black);
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  box-sizing: border-box;
+	color: var(--black);
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
+	box-sizing: border-box;
 }
 
 h1,
 h2 {
-  color: var(--textPrimary);
+	color: var(--textPrimary);
 }
 
 body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 .mainContent {
-  overflow: auto;
+	overflow: auto;
 }
 
 .mainContentWrapper {
-  padding: 2rem;
+	padding: 2rem;
+}
+
+.warning {
+	margin: 0;
+	line-height: 18px;
+	color: hsl(357deg 91% 70%);
+	text-align: center;
+	font-size: 12px;
 }

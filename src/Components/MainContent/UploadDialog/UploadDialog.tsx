@@ -44,7 +44,7 @@ const UploadDialog = ({ setUploadState }: UploadDialogInterface) => {
             setProgress={setProgress}
           />
 
-          {progress && <UploadProgress progress={progress} />}
+          {<UploadProgress progress={progress} />}
         </div>
       </div>
     </>

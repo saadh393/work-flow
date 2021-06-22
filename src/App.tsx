@@ -36,7 +36,7 @@ function App() {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    setUser({ name: "Saad Hasan", email: "test@email.com" });
+    setUser({ name: "Anonymous", email: "test@email.com" });
   }, []);
 
   return (
