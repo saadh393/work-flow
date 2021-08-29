@@ -14,7 +14,7 @@ type NoteParam = {
 const Note = () => {
 	let { Noteid } = useParams<NoteParam>();
 	const [EachNote, setEachNote] = useState<any>();
-	const { todos, setTodo } = useToggleEvents();
+	const { todos, setTodo, user } = useToggleEvents();
 	const history = useHistory();
 
 	useEffect(() => {
@@ -22,6 +22,7 @@ const Note = () => {
 		newNote.then((res) => {
 			const Data = [...res].filter((todo: any) => todo.id == Noteid);
 			setEachNote(Data[0]);
+			console.log(Data[0]);
 		});
 	}, []);
 
@@ -65,7 +66,13 @@ const Note = () => {
 					</div>
 					<div className='modal-menu'>
 						<li onClick={handleCancel}>Dissmiss</li>
-						<li onClick={handleCancel}>Delete</li>
+						{EachNote && EachNote.user.email === user.email ? (
+							<li onClick={handleCancel} style={{ color: "red" }}>
+								Delete
+							</li>
+						) : (
+							""
+						)}
 					</div>
 				</div>
 			</div>
