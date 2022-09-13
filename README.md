@@ -1,6 +1,16 @@
-# Notify Me
+# Workflow
+
+Simple application to keep note. You can share your working experience, just like facebook story share.
 
 Live Preview - [https://work-flow.netlify.app/](https://work-flow.netlify.app/ "https://work-flow.netlify.app/")
+
+### Technology Used
+
+- React
+- TypeScript
+- Firebase Authentication System
+- Firebase Realtime Database
+- Lottie Animation and so on
 
 ### Screenshort
 
