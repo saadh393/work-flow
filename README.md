@@ -1,3 +1,5 @@
+<img src="https://github.com/saadh393/work-flow/blob/main/src/images/logoLow.png?raw=true" width='100px'/>
+
 # Workflow
 
 Simple application to keep note. You can share your working experience, just like facebook story share.
